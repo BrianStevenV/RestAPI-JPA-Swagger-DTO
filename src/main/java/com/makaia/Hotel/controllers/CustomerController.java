@@ -21,7 +21,8 @@ public class CustomerController {
     private CustomerService customerService;
 
     @ApiResponses(value={
-            @ApiResponse( code = 201, message = "created customer success")
+            @ApiResponse( code = 201, message = "created customer success"),
+            @ApiResponse(code = 500, message ="That's an internal error"),
     })
     @ApiOperation(value="customer", notes= "this create a customer", response = Customer.class)
     @PostMapping("/customer")

@@ -16,7 +16,8 @@ public class RoomController {
     @Autowired
     private RoomService roomService;
     @ApiResponses(value={
-            @ApiResponse( code = 201, message = "created room success")
+            @ApiResponse( code = 201, message = "created room success"),
+            @ApiResponse(code = 500, message ="That's an internal error"),
     })
     @ApiOperation(value="room", notes= "this create a room", response = Room.class)
     @PostMapping("/room")

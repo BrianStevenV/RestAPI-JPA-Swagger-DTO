@@ -12,7 +12,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
@@ -64,18 +67,23 @@ public class ReservationService {
     }
 
 
-    public List<Room> roomsByDate(LocalDate date){
-        List<Reservation> reservations = research();
-        List<Room> roomList = new ArrayList<>();
-
+    public List<Room> roomsByDate(String date){
+        if(validateDate(date)){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate parsedDate = LocalDate.parse(date, formatter);
+            List<Reservation> reservations = research();
+            List<Room> roomList = new ArrayList<>();
             List<Reservation> reservationList = reservations.stream()
-                    .filter(reservation -> reservation.getRoom() != null && reservation.getReserveDate().equals(date))
+                    .filter(reservation -> reservation.getRoom() != null && reservation.getReserveDate().equals(parsedDate))
                     .collect(Collectors.toList());
-        reservationList.forEach(reservation -> {
-            roomList.add(reservation.getRoom());
-        });
+            reservationList.forEach(reservation -> {
+                roomList.add(reservation.getRoom());
+            });
+            return roomList;
+        }   else {
+            throw new HandlerResponseException(HttpStatus.INTERNAL_SERVER_ERROR,"Date format is invalid.");
+        }
 
-        return roomList;
     }
 
 
@@ -105,4 +113,11 @@ public class ReservationService {
             throw new HandlerResponseException(HttpStatus.INTERNAL_SERVER_ERROR,"Reservation isn't available for " + nowDate);
         }
     }
+    public boolean validateDate(String date){
+        Pattern pattern = Pattern
+                .compile("(\\d{4})-(0?[1-9]|1[012])-(0?[1-9]|[12][0-9])");
+        Matcher matcher = pattern.matcher(date);
+        return matcher.find();
+    }
+
 }
