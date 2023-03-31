@@ -34,6 +34,7 @@ public class ReservationController {
 
     @ApiResponses(value={
             @ApiResponse( code = 200, message = "room type search success"),
+            @ApiResponse(code = 400, message ="Room incorrect."),
             @ApiResponse(code = 404, message ="That's an error in the client service"),
             @ApiResponse(code = 500, message ="That's an internal error"),
     })
@@ -47,6 +48,7 @@ public class ReservationController {
 
     @ApiResponses(value = {
             @ApiResponse(code = 200, message ="Everything is Ok"),
+            @ApiResponse(code = 400, message ="Date format incorrect."),
             @ApiResponse(code = 404, message ="That's an error in the client service"),
             @ApiResponse(code = 500, message ="That's an internal error"),
     })
