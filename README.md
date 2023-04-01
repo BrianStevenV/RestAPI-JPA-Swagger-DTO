@@ -28,8 +28,6 @@ The project was built in:
 - Creation to request of database for a reservation.
 
 # System
-The system has requirements in order to functionalities, first, the Customer have to register in the application for can use reservation system, for this, the datas
-entered in fields should are in type data corrects, when Customer are register in the System, Customer will can searches rooms for type room, type room and dates,
-when Customer request a room for reservation, the systems will validate if the room is available or not and the system will response with a reservation or reservation rejected.
+The system has requirements in order to functionalities, first, the Customer have to register in the application for can use reservation system, for this, the datas entered in fields should are in type data corrects, when Customer are register in the System, Customer will can searches rooms for type room, type room and dates, when Customer request a room for reservation, the systems will validate if the room is available or not and the system will response with a reservation or reservation rejected. 
 
 
