@@ -1,6 +1,6 @@
 # System's Reservations Hotel
 
-# Desription
+# Description
 
 This project is an application that allows a customer to be able to book a reversation in a hotel.  It is a simple application which liases between the customer, hotel rooms and the reservation system in order to establish relationships between the listed items.
 
